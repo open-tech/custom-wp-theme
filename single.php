@@ -35,10 +35,6 @@
 
 	</div>
 	
-
-	
-</div>
-
 <div class="post-pagination">
 	
 
@@ -49,6 +45,10 @@
  
 	
 </div>
+	
+</div>
+
+
  
 <?php endwhile; ?>
 	
