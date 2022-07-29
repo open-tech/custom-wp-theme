@@ -44,6 +44,10 @@ add_action( 'init', 'wpb_custom_new_menu' );
 
 
 
+// φορτώνουμε το JS αρχείο μας
 
+function wp_load_script() {
 
-require get_template_directory() . 'metaboxes.php';
+    wp_enqueue_script( 'script-name', get_template_directory_uri() . '/script.js', array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'wp_load_script' );
