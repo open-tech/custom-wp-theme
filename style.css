@@ -31,6 +31,149 @@ body {
 
 /**************** HEADER  ****************/
 
+/*** MOBILE MENU ***/
+
+
+
+	.mobile-menu-container{display:none;
+margin-top: 20px;
+    margin-left: 20px;}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+
+	position:relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
+    transition: 0.4s;
+}
+
+.overlay-open{ height: 100%; }
+
+.overlay-content {
+    position: relative;
+    top: 10%;
+    width: 100%;
+	margin-top:0;
+	    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .overlay a,{
+
+ 
+    transition: 0.3s;
+
+}
+
+
+.overlay a:hover, .overlay a:focus {
+    color: #fd7e14;
+} */
+
+.open-close-btn {
+position: relative;
+left: 5px;
+text-decoration: none;
+z-index:10;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+}
+
+
+/* Hamburger Icon */
+#hamburger-icon{
+display: inline-block;
+  width: 35px;
+  height: 30px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+
+ #hamburger-icon span {
+  display: inline-block;
+  position: absolute;
+  
+  height: 3px;
+  width: 100%;
+  background: black;
+
+  opacity: 1;
+  left: 0;
+  margin-top: 6px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+
+/* Hamburger Lines  */
+
+ #hamburger-icon span:nth-child(1) {
+  top: 0px;
+}
+
+ #hamburger-icon span:nth-child(2), #hamburger-icon span:nth-child(3) {
+  top: 13px;
+}
+
+ #hamburger-icon span:nth-child(4) {
+  top: 26px;
+}
+
+#hamburger-icon.hamburger-open span{
+    background:black;
+    /* margin-left: 2%; */
+}
+
+ #hamburger-icon.hamburger-open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+ #hamburger-icon.hamburger-open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+ #hamburger-icon.hamburger-open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+ #hamburger-icon.hamburger-open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+/**************** MOBILE MENU END ***********************/
+
+
 .header-logo img {
   height: 60px;
 }
@@ -412,7 +555,8 @@ h2 {
   grid-template-areas:
     "sthumb  sthumb"
     "smeta smeta"
-    "scontent scontent";
+    "scontent scontent"
+	  "postpagination postpagination";
 }
 
 .single-post-thumb img {
@@ -472,7 +616,8 @@ h2 {
 .post-pagination {
   display: flex;
   justify-content: space-between;
-  width: 800px;
+  width: 100%;
+	grid-area:postpagination;
 
   margin: 20px auto;
 }
@@ -615,12 +760,77 @@ textarea {
   color: var(--accent);
   text-decoration: none;
 }
-
 /**************** MEDIA QUERY ****************/
+@media screen and (min-width: 2100px) {
+  .mouse {
+    position: absolute;
+    bottom: 0;
+  }
+}
 
-@media (max-width: 900px) {
+@media screen and (max-width: 1200px) {
+  .front-page-content {
+    width: 70%;
+  }
+
+  .front-page-cover {
+    width: 100%;
+    height: 60%;
+  }
+
+  .mouse {
+    transform: translateY(50px);
+  }
+
+  .front-page-square {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, 50px);
+    width: 70%;
+  }
+
+  .front-posts-container {
+    flex-direction: column;
+    width: 376px;
+  }
+
+  .front-featured-posts {
+    text-align: center;
+  }
+
+  #site-footer p {
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+  }
+
+  .header2 {
+    font-size: 0.9rem;
+  }
+
+  .single-post-container {
+    width: 80%;
+    margin-top: 40px;
+  }
+
+  .single-post-metadata {
+    display: block;
+  }
+
+  .single-post-date,
+  .single-post-author,
+  .single-post-categories {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .posts-container {
+    width: 300px;
+  }
   .preview-post {
-    width: 90vw;
+    padding: 60px 5px 60px 5px;
+    width: 300px;
     grid-template-areas:
       "thumb "
       "thumb "
@@ -629,12 +839,118 @@ textarea {
       "excerpt "
       "link";
   }
-}
+  .preview-post-thumb img {
+    height: 180px;
+    width: 100%;
+  }
 
-@media (min-width: 2100px) {
-  .mouse {
-    position: absolute;
-    bottom: 0;
+  .about-container {
+    width: 80%;
+  }
+
+  .about-image-desc {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .about-image {
+    padding-top: 30px;
+  }
+  .about-image img {
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
+
+
+@media screen and (max-width: 700px) {
+  .front-page-content {
+    width: 80%;
+  }
+
+  .front-words {
+    font-size: 1.2rem;
+  }
+
+  /* BURGER MENU */
+  .mobile-menu-container {
+    display: block;
+  }
+
+  .social-medias {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    height: 65vh;
+  }
+
+  .overlay {
+    position: fixed;
+    background-color: #f2f2f2;
+  }
+
+  .overlay-content {
+  }
+
+  #menu-main-menu {
+    flex-direction: column;
+    text-align: center;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+  }
+
+  .my-custom-menu {
+    width: auto;
+    height: auto;
+  }
+
+  .line {
+    height: 50%;
+  }
+
+  .single-post-container img {
+    height: 200px;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .front-page-cover {
+    width: 90%;
+    height: auto;
+  }
+
+  .front-page-content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .front-page-square {
+    width: 90%;
+  }
+  .header2 {
+    font-size: 0.7rem;
+  }
+
+  .front-posts-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .social-medias {
+    height: 470px;
+  }
+  .line {
+    height: 30%;
+  }
+}
+
+
+
 
